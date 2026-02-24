@@ -32,8 +32,8 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("multiplied")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
-      const sum = numbers.map(Number).reduce((a, b) => a * b, 0);
-      return sum.toString();
+      const product = numbers.map(Number).reduce((a, b) => a * b, 1);
+      return product.toString();
     }
   }
 
