@@ -37,5 +37,19 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("square")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const product = numbers.map(Number).reduce((a, b) => a * b, 1);
+      return product.toString();
+    }
+  }
+  if (query.toLowerCase().includes("minus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const product = numbers.map(Number).reduce((a, b) => a - b, 0);
+      return product.toString();
+    }
+  }
   return "";
 }
