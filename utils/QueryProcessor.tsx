@@ -25,6 +25,16 @@ export default function QueryProcessor(query: string): string {
     return Math.max(...numbers).toString();
   }
 
+  if (query.toLowerCase().includes("plus") && query.toLowerCase().includes("multiplied")) {
+    const match = query.match(/(\d+)\s+plus\s+(\d+)\s+multiplied by\s+(\d+)/i);
+    if (match) {
+      const a = parseInt(match[1], 10);
+      const b = parseInt(match[2], 10);
+      const c = parseInt(match[3], 10);
+      return (a + b * c).toString();
+    }
+  }
+
   if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -56,6 +66,14 @@ export default function QueryProcessor(query: string): string {
     }
   }
   if (query.toLowerCase().includes("minus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const product = numbers.map(Number).reduce((a, b) => a - b);
+      return product.toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("primes")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
       const product = numbers.map(Number).reduce((a, b) => a - b);
