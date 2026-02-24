@@ -10,11 +10,13 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("name")) {
     return "maxwell2";
   }
+
   if (query.toLowerCase().includes("andrew id")) {
     return (
       "maxwell2 (Maxwell Huang)" 
     );
   }
+
   if (query.toLowerCase().includes("following numbers is the largest: ")) {
     const numbers = query
       .substring(query.indexOf("largest: ") + "largest: ".length)
@@ -22,6 +24,7 @@ export default function QueryProcessor(query: string): string {
       .map((s) => parseInt(s.trim(), 10));
     return Math.max(...numbers).toString();
   }
+
   if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -29,6 +32,7 @@ export default function QueryProcessor(query: string): string {
       return sum.toString();
     }
   }
+
   if (query.toLowerCase().includes("multiplied")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -44,6 +48,13 @@ export default function QueryProcessor(query: string): string {
       return product.toString();
     }
   }
+  if (query.toLowerCase().includes("power")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      const result = numbers.map(Number).reduce((a, b) => a ** b);
+      return result.toString();
+    }
+  }
   if (query.toLowerCase().includes("minus")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
@@ -52,4 +63,5 @@ export default function QueryProcessor(query: string): string {
     }
   }
   return "";
+
 }
