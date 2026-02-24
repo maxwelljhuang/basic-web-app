@@ -47,7 +47,7 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("minus")) {
     const numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
-      const product = numbers.map(Number).reduce((a, b) => a - b, 0);
+      const product = numbers.map(Number).reduce((a, b) => a - b);
       return product.toString();
     }
   }
